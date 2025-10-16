@@ -102,7 +102,6 @@ class GestionEtablissement {
         }
     }
     
-
     func ajouterEtudiant() {
         print("\nAJOUT D'UN NOUVEL ÉTUDIANT")
         
@@ -319,7 +318,6 @@ class GestionEtablissement {
         economat.ajouterTransaction(type: type, montant: montant, description: description)
         print("Transaction ajoutee avec succes!")
     }
-
     private func getMention(moyenne: Double) -> String {
         switch moyenne {
         case 65...100: return "Admis(e)"
@@ -328,3 +326,33 @@ class GestionEtablissement {
         default: return "Cas grave,Cas Special"
         }
     }
+    
+    func demarrer() {
+        print(" Démarrage du système de gestion scolaire...")
+        
+        while true {
+            afficherMenuPrincipal()
+            
+            if let choix = readLine(), let option = Int(choix) {
+                switch option {
+                case 1:
+                    gererEtudiants()
+                case 2:
+                    gererEconomat()
+                case 3:
+                    print("\n Merci d'avoir utilisé notre système!")
+                    print("À bientôt! ")
+                    return
+                default:
+                    print(" Option invalide! Veuillez choisir entre 1 et 3.")
+                }
+            } else {
+                print(" Veuillez entrer un nombre valide.")
+            }
+        }
+    }
+}
+
+// Point d'entrée du programme
+let gestionEtablissement = GestionEtablissement()
+gestionEtablissement.demarrer()
