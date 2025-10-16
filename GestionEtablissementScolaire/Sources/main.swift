@@ -154,4 +154,55 @@ class GestionEtablissement {
         print(String(repeating: "=", count: 50))
         print("Total: \(etudiants.count) étudiant(s)")
     }
-    
+
+    func ajouterNotes() {
+        if etudiants.isEmpty {
+            print("Aucun étudiant enregistré. Veuillez d'abord ajouter un étudiant.")
+            return
+        }
+        
+        print("\nAJOUT DE NOTES")
+        listerEtudiants()
+        print("\nNuméro de l'étudiant: ", terminator: "")
+        
+        guard let input = readLine(),
+              let index = Int(input),
+              index > 0, index <= etudiants.count else {
+            print("Numéro d'étudiant invalide.")
+            return
+        }
+        
+        let etudiant = etudiants[index - 1]
+        
+        print("Matière: ", terminator: "")
+        guard let matiere = readLine(), !matiere.isEmpty else {
+            print("La matière ne peut pas être vide.")
+            return
+        }
+        
+        func lireNote(_ type: String) -> Double? {
+            print("Note \(type) (0 à 100): ", terminator: "")
+            guard let input = readLine(),
+                  let note = Double(input),
+                  note >= 0, note <= 100 else {
+                print("Note \(type) invalide. Doit être entre 0 et 100.")
+                return nil
+            }
+            return note
+        }
+        
+        guard let noteIntra = lireNote("Intra"),
+              let noteDevoir = lireNote("Devoir"),
+              let noteFinal = lireNote("Final") else {
+            return
+        }
+        
+        etudiant.ajouterNote(matiere: matiere, note: noteIntra)
+        etudiant.ajouterNote(matiere: matiere, note: noteDevoir)
+        etudiant.ajouterNote(matiere: matiere, note: noteFinal)
+        
+        if let moyenne = etudiant.calculerMoyenneMatiere(matiere: matiere) {
+            print(" Notes ajoutées avec succès!")
+            print("Moyenne en \(matiere): \(String(format: "%.2f", moyenne))/100")
+        }
+    }
