@@ -206,3 +206,42 @@ class GestionEtablissement {
             print("Moyenne en \(matiere): \(String(format: "%.2f", moyenne))/100")
         }
     }
+   
+    func calculerMoyennes() {
+        if etudiants.isEmpty {
+            print("Aucun étudiant enregistré.")
+            return
+        }
+        
+        print("\nMOYENNES DES ÉTUDIANTS")
+        print(String(repeating: "=", count: 60))
+        
+        for etudiant in etudiants {
+            print("\n\(etudiant.matricule) - \(etudiant.nom) \(etudiant.prenom)")
+            
+            if etudiant.notes.isEmpty {
+                print("  Aucune note enregistrée.")
+            } else {
+                var somme = 0.0
+                var compteur = 0
+                
+                for (matiere, _) in etudiant.notes {
+                    if let moyenne = etudiant.calculerMoyenneMatiere(matiere: matiere) {
+                        let mention = getMention(moyenne: moyenne)
+                        print("  \(matiere): \(String(format: "%.2f", moyenne))/100 - \(mention)")
+                        somme += moyenne
+                        compteur += 1
+                    }
+                }
+                
+                if compteur > 0 {
+                    let moyenneGenerale = somme / Double(compteur)
+                    let mentionGenerale = getMention(moyenne: moyenneGenerale)
+                    print("  Moyenne générale: \(String(format: "%.2f", moyenneGenerale))/100 - \(mentionGenerale)")
+                }
+            }
+        }
+        
+        print(String(repeating: "=", count: 60))
+    }
+    
