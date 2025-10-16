@@ -24,7 +24,7 @@ class GestionEtablissement {
         print("=" * 60)
         print("1.  Gestion des Étudiants")
         print("2.  Gestion de l'Économat")
-        print("3. Quitter")
+        print("3.  Quitter")
         print("=" * 60)
         print("Votre choix (1-3): ", terminator: "")
     }
