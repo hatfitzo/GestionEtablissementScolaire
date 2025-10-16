@@ -278,3 +278,44 @@ class GestionEtablissement {
             }
             break
         }
+
+                var montant: Double = 0
+        while montant <= 0 {
+            print("Montant (HTG) ou 'annuler' pour retourner: ", terminator: "")
+            guard let input = readLine(), !input.isEmpty else {
+                print("Le montant ne peut pas etre vide.")
+                continue
+            }
+            
+            if input.lowercased() == "annuler" {
+                print("Operation annulee. Retour au menu principal...")
+                return
+            }
+            
+            let inputNettoye = input.replacingOccurrences(of: ",", with: ".")
+            guard let valeur = Double(inputNettoye), valeur > 0 else {
+                print("Montant invalide. Entrez un nombre positif.")
+                continue
+            }
+            montant = valeur
+        }
+        
+        var description = ""
+        while description.isEmpty {
+            print("Description ou 'annuler' pour retourner: ", terminator: "")
+            guard let desc = readLine(), !desc.isEmpty else {
+                print("La description ne peut pas etre vide.")
+                continue
+            }
+            
+            if desc.lowercased() == "annuler" {
+                print("Operation annulee. Retour au menu principal...")
+                return
+            }
+            
+            description = desc
+        }
+        
+        economat.ajouterTransaction(type: type, montant: montant, description: description)
+        print("Transaction ajoutee avec succes!")
+    }
