@@ -53,3 +53,28 @@ class GestionEtablissement {
         print("=" * 40)
         print("Votre choix (1-4): ", terminator: "")
     }
+
+    func gererEtudiants() {
+        while true {
+            afficherMenuEtudiants()
+            
+            if let choix = readLine(), let option = Int(choix) {
+                switch option {
+                case 1:
+                    ajouterEtudiant()
+                case 2:
+                    listerEtudiants()
+                case 3:
+                    ajouterNotes()
+                case 4:
+                    calculerMoyennes()
+                case 5:
+                    return
+                default:
+                    print("Option invalide! Veuillez choisir entre 1 et 5.")
+                }
+            } else {
+                print(" Veuillez entrer un nombre valide.")
+            }
+        }
+    }
