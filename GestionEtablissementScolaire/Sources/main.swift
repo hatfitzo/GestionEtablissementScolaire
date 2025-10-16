@@ -244,4 +244,37 @@ class GestionEtablissement {
         
         print(String(repeating: "=", count: 60))
     }
-    
+
+    func ajouterTransaction() {
+        
+        print("\nAJOUT D'UNE TRANSACTION")
+        
+        var type: String
+        while true {
+            print("Type de transaction:")
+            print("1. Depot(paiement scolaire, partenariat...)")
+            print("2. Retrait(Payroll, remboursement de prêt...)")
+            print("3. Retour au menu principal")
+            print("Choisissez (1, 2 ou 3): ", terminator: "")
+            
+            guard let choix = readLine(), !choix.isEmpty else {
+                print("Le choix ne peut pas etre vide.")
+                continue
+            }
+            
+            switch choix {
+            case "1":
+                type = "depot"
+                break
+            case "2":
+                type = "retrait"
+                break
+            case "3":
+                print("Retour au menu principal...")
+                return
+            default:
+                print("Choix invalide. Veuillez choisir 1, 2 ou 3.")
+                continue
+            }
+            break
+        }
