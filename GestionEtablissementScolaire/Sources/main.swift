@@ -319,3 +319,12 @@ class GestionEtablissement {
         economat.ajouterTransaction(type: type, montant: montant, description: description)
         print("Transaction ajoutee avec succes!")
     }
+
+    private func getMention(moyenne: Double) -> String {
+        switch moyenne {
+        case 65...100: return "Admis(e)"
+        case 50..<65: return "Reprise"
+        case 21..<50: return "Vous avez a reprendre le cours"
+        default: return "Cas grave,Cas Special"
+        }
+    }
