@@ -139,3 +139,19 @@ class GestionEtablissement {
         etudiants.append(etudiant)
         print("Étudiant ajouté avec succès !")
     }
+    
+    func listerEtudiants() {
+        if etudiants.isEmpty {
+            print("\nAucun étudiant enregistré.")
+            return
+        }
+        
+        print("\nLISTE DES ÉTUDIANTS:")
+        print(String(repeating: "=", count: 50))
+        for (index, etudiant) in etudiants.enumerated() {
+            print("\(index + 1). \(etudiant.matricule) - \(etudiant.nom) \(etudiant.prenom) | Niveau: \(etudiant.niveau)")
+        }
+        print(String(repeating: "=", count: 50))
+        print("Total: \(etudiants.count) étudiant(s)")
+    }
+    
