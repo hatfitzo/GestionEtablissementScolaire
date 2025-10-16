@@ -102,3 +102,40 @@ class GestionEtablissement {
         }
     }
     
+
+    func ajouterEtudiant() {
+        print("\nAJOUT D'UN NOUVEL ÉTUDIANT")
+        
+        print("Nom: ", terminator: "")
+        guard let nom = readLine(), !nom.isEmpty else {
+            print("Le nom ne peut pas être vide.")
+            return
+        }
+        
+        print("Prénom: ", terminator: "")
+        guard let prenom = readLine(), !prenom.isEmpty else {
+            print("Le prénom ne peut pas être vide.")
+            return
+        }
+        
+        print("Matricule: ", terminator: "")
+        guard let matricule = readLine(), !matricule.isEmpty else {
+            print("Le matricule ne peut pas être vide.")
+            return
+        }
+        
+        if etudiants.contains(where: { $0.matricule == matricule }) {
+            print("Un étudiant avec ce matricule existe déjà.")
+            return
+        }
+        
+        print("Niveau (ex: CPI-1, CPI-2, Licence 3, Licence 4): ", terminator: "")
+        guard let niveau = readLine(), !niveau.isEmpty else {
+            print("Le niveau ne peut pas être vide.")
+            return
+        }
+        
+        let etudiant = Etudiant(nom: nom, prenom: prenom, matricule: matricule, niveau: niveau)
+        etudiants.append(etudiant)
+        print("Étudiant ajouté avec succès !")
+    }
