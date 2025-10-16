@@ -78,3 +78,27 @@ class GestionEtablissement {
             }
         }
     }
+    
+    func gererEconomat() {
+        while true {
+            afficherMenuEconomat()
+            
+            if let choix = readLine(), let option = Int(choix) {
+                switch option {
+                case 1:
+                    ajouterTransaction()
+                case 2:
+                    economat.listerTransactions()
+                case 3:
+                    economat.afficherSolde()
+                case 4:
+                    return
+                default:
+                    print("Option invalide! Veuillez choisir entre 1 et 4.")
+                }
+            } else {
+                print(" Veuillez entrer un nombre valide.")
+            }
+        }
+    }
+    
